@@ -1,0 +1,115 @@
+
+
+body {
+  font-family: "Lato", sans-serif;
+    background-color: lightblue;
+    color:darkblue;
+}
+
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #ffca18;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+.sidenav a:active{
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: darkgrey;
+  display: block;
+}
+.active
+{
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: darkgrey;
+  display: block;
+}
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 250px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+button{
+    height: 40px;
+    width: 125px;
+    color:dar
+}
+label{
+    font-size: 23Px;
+   display:flex;
+}
+.imgedit{
+    width:75px;
+    height: 75px;
+    border-radius: 50%;
+}
+.btnedit{
+    width: 150px;
+    height: 150Px;
+    border-radius: 5%;
+    backface-visibility: 70%;
+    background-color: lightblue;
+    display:flex;}
+   
+
+div.col-sm-2{
+    display: flex;
+}div.col-xm-2{
+    display: flex;
+}
+.footer {
+    display: flex;
+   position:fixed;
+   bottom: 0;
+   left :0;
+   width: 100%;
+   background-color: gray;
+   color: white;
+   justify-content: center;
+   font-size: 12px;
+   text-decoration: whitesmoke;
+   
+}
+@-ms-viewport{
+    width:device-width;zoom:1.0;
+}
+@-webkit-viewport{
+    width:device-width;zoom:1.0;
+}
+.navbar-header{display: flex}
+.navbar-brand>img{
+    height:200%;
+    width: auto;
+    display: flex;
+}
+.navbar-brand>p{
+    size: 50%;
+    display: flex;
+}
+h3{display:flow;}

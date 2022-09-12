@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>AkshayPatraProjectScheme</title>
+
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="text-center my-4">
+      <h1>AkshayPatraProjectScheme</h1>
+    </div>
+    <hr>
+    <!-- Main menu with two buttons -->
+    <div class="text-center">
+      <!-- <button class="btn btn-lg btn-primary" type="button" onclick="App.btn_addUser_menu()">Add User</button>
+      &emsp;&emsp;
+      <button class="btn btn-lg btn-primary" type="button" onclick="App.btn_login_menu()">Login</button> -->
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">RegisterAS</div>
+        <div class="col-md-3">
+          <select id="_registerAs" class="form-control">
+            <option value="0">Select Register As</option>
+            <option value="1">School</option>
+            <option value="2">Block</option>
+            <option value="3">District</option>
+            <option value="4">State</option>
+          </select>
+        </div>
+        <!-- <div class="row justify-content-center mt-4"> -->
+        <div class="col-md-2">Login AS</div>
+        <div class="col-md-3">
+          <!-- <select id="_loginAs" onclick="App.select_loginas()" class="form-control"> -->
+          <select class="form-control">
+            <option value="0">Select Login As</option>
+            <option value="1"><a href="s_page.html">School</a></option>
+            <option value="2">Block</option>
+            <option value="3">District</option>
+            <option value="4">State</option>
+          </select>
+        </div>
+        <!-- </div> -->
+      </div>
+    </div>
+    <hr>
+    <!-- Add user section to add user details -->
+    <section id="addSchool">
+      <h4 class=" text-center my-4"><u>Add New School</u></h4>
+
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">School ID</div>
+        <div class="col-md-5"><input type="number" id="new_sid" class="form-control"></div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">School Name</div>
+        <div class="col-md-5"><input type="text" id="new_sname" class="form-control"></div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">School Phone</div>
+        <div class="col-md-5"><input required minlength="10" maxlength="10" size="10" type="number" id="new_sphone"
+            class="form-control"></div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">School Email</div>
+        <div class="col-md-5"><input type="text" id="new_smail" class="form-control"></div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">State</div>
+        <div class="col-md-5"><select id="new_sstate" class="form-control">
+            <option value="0">Select State</option>
+          </select></div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">District</div>
+        <div class="col-md-5">
+          <select id="new_sdistrict" class="form-control">
+            <option value="0">Select District</option>
+          </select>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">Block</div>
+        <div class="col-md-5">
+          <select id="new_sblock" class="form-control">
+            <option value="0">Select Block</option>
+          </select>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">Address</div>
+        <div class="col-md-5"><textarea class="form-control" id="new_saddress" rows="3"></textarea></div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-3"><button type="button" class="btn btn-success form-control"
+            onclick="App.btnAddSchool()">ADD</button></div>
+      </div>
+
+      <div id="add_err" class="text-center"></div>
+
+      <hr>
+    </section>
+    <!-- Block section -->
+    <section id="addBlock">
+      <h4 class=" text-center my-4"><u>Add New Block</u></h4>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">Officer Name</div>
+        <div class="col-md-5"><input type="text" id="new_bonm" class="form-control"></div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">Phone</div>
+        <div class="col-md-5"><input required maxlength="10" size="10" type="number" id="new_bophone"
+            class="form-control"></div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">School Email</div>
+        <div class="col-md-5"><input type="email" id="new_bomail" class="form-control"></div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">State</div>
+        <div class="col-md-5"><select id="new_bstate" class="form-control">
+            <option value="0">Select State</option>
+          </select></div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">District</div>
+        <div class="col-md-5">
+          <select id="new_bdistrict" class="form-control">
+            <option value="0">Select District</option>
+          </select>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">Block</div>
+        <div class="col-md-5">
+          <select id="new_bblock" class="form-control">
+            <option value="0">Select Block</option>
+          </select>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-3"><button type="button" class="btn btn-success form-control"
+            onclick="App.btnAddBlock()">ADD</button></div>
+      </div>
+      <div id="add_err2" class="text-center"></div>
+      <hr>
+    </section>
+    <!-- District section -->
+    <section id="addDistrict">
+      <h4 class=" text-center my-4"><u>Add New District</u></h4>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">Officer Name</div>
+        <div class="col-md-5"><input type="number" id="new_donm" class="form-control"></div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">Phone</div>
+        <div class="col-md-5"><input required maxlength="10" size="10" type="number" id="new_dophone"
+            class="form-control"></div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">School Email</div>
+        <div class="col-md-5"><input type="text" id="new_domail" class="form-control"></div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">State</div>
+        <div class="col-md-5"><select id="new_dostate" class="form-control">
+            <option value="0">Select State</option>
+          </select></div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">District</div>
+        <div class="col-md-5">
+          <select id="new_sdistrict" class="form-control">
+            <option value="0">Select District</option>
+          </select>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-3"><button type="button" class="btn btn-success form-control"
+            onclick="App.btnAddDistrict()">ADD</button></div>
+      </div>
+      <div id="add_err" class="text-center"></div>
+      <hr>
+    </section>
+    <!-- state section -->
+    <section id="addState">
+      <h4 class=" text-center my-4"><u>Add New State</u></h4>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">Officer Name</div>
+        <div class="col-md-5"><input type="number" id="new_sonm" class="form-control"></div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">Phone</div>
+        <div class="col-md-5"><input required maxlength="10" size="10" type="number" id="new_sophone"
+            class="form-control"></div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">School Email</div>
+        <div class="col-md-5"><input type="text" id="new_somail" class="form-control"></div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-2">State</div>
+        <div class="col-md-5"><select id="new_sostate" class="form-control">
+            <option value="0">Select State</option>
+          </select></div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-3"><button type="button" class="btn btn-success form-control"
+            onclick="App.btnAddState()">ADD</button></div>
+      </div>
+      <div id="add_err" class="text-center"></div>
+      <hr>
+    </section>
+
+    <!-- View Student section to show the details of the student -->
+    <section id="login">
+      <h4 class="text-center my-4"><u>Login</u></h4>
+
+      <div id="view_err" class="text-center"></div>
+
+      <div id="view_result">
+        <div class="row justify-content-center my-4">
+          <div class="col-md-6">
+            <b>Account Address:</b> &emsp;&emsp; <label id="view_acad"></label> <br>
+            <b>School ID :</b> &emsp;&emsp; <label id="view_sid"></label> <br>
+            <b>Name:</b> &emsp;&emsp; <label id="view_sname"></label> <br>
+            <b>Phone:</b> &emsp;&emsp; <label id="view_sphone"></label> <br>
+            <b>Email Id:</b> &emsp;&emsp; <label id="view_smail"></label><br>
+            <b>State:</b> &emsp;&emsp; <label id="view_sstate"></label> <br>
+            <b>District</b> &emsp;&emsp; <label id="view_sdistance"></label> <br>
+            <b>Block:</b> &emsp;&emsp; <label id="view_sblock"></label> <br>
+
+          </div>
+        </div>
+      </div>
+
+      <hr>
+    </section>
+
+  </div>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/web3.min.js"></script>
+  <script src="js/truffle-contract.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
