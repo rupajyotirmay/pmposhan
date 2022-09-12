@@ -38,8 +38,8 @@
         </div>
         <!-- <div class="row justify-content-center mt-4"> -->
         <div class="col-md-2">Login AS</div>
-        <div class="col-md-3">
-          <!-- <select id="_loginAs" onclick="App.select_loginas()" class="form-control"> -->
+        <!-- <div class="col-md-3">
+          -- <select id="_loginAs" onclick="App.select_loginas()" class="form-control"> --
           <select class="form-control">
             <option value="0">Select Login As</option>
             <option value="1"><a href="s_page.html">School</a></option>
@@ -47,7 +47,22 @@
             <option value="3">District</option>
             <option value="4">State</option>
           </select>
+        </div> -->
+
+        <div class="col-md-3">
+          <div class="dropdown">
+            <button class="btn btn-light form-control dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Select Login As
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="s_page.html">School</a></li>
+              <li><a class="dropdown-item" href="b_page.html">Block</a></li>
+              <li><a class="dropdown-item" href="d_page.html">District</a></li>
+              <li><a class="dropdown-item" href="st_page.html">State</a></li>
+            </ul>
+          </div>
         </div>
+
         <!-- </div> -->
       </div>
     </div>
