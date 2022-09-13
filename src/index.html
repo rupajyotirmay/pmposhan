@@ -51,7 +51,8 @@
 
         <div class="col-md-3">
           <div class="dropdown">
-            <button class="btn btn-light form-control dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-light form-control dropdown-toggle" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
               Select Login As
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -90,15 +91,15 @@
       </div>
       <div class="row justify-content-center mt-4">
         <div class="col-md-2">State</div>
-        <div class="col-md-5"><select id="new_sstate" class="form-control">
-            <option value="0">Select State</option>
+        <div class="col-md-5"><select id="new_sstate" class="form-control" onchange="getDistrict1()">
+            <option value="0">-- Select State --</option>
           </select></div>
       </div>
       <div class="row justify-content-center mt-4">
         <div class="col-md-2">District</div>
         <div class="col-md-5">
-          <select id="new_sdistrict" class="form-control">
-            <option value="0">Select District</option>
+          <select id="new_sdistrict" class="form-control" onchange="getBlock1()">
+            <option value="0">-- Select District --</option>
           </select>
         </div>
       </div>
@@ -106,7 +107,7 @@
         <div class="col-md-2">Block</div>
         <div class="col-md-5">
           <select id="new_sblock" class="form-control">
-            <option value="0">Select Block</option>
+            <option value="0">-- Select Block --</option>
           </select>
         </div>
       </div>
@@ -141,15 +142,15 @@
       </div>
       <div class="row justify-content-center mt-4">
         <div class="col-md-2">State</div>
-        <div class="col-md-5"><select id="new_bstate" class="form-control">
-            <option value="0">Select State</option>
+        <div class="col-md-5"><select id="new_bstate" class="form-control" onchange="getDistrict2()">
+            <option value="0">-- Select State --</option>
           </select></div>
       </div>
       <div class="row justify-content-center mt-4">
         <div class="col-md-2">District</div>
         <div class="col-md-5">
-          <select id="new_bdistrict" class="form-control">
-            <option value="0">Select District</option>
+          <select id="new_bdistrict" class="form-control" onchange="getBlock2()">
+            <option value="0">-- Select District-- </option>
           </select>
         </div>
       </div>
@@ -157,7 +158,7 @@
         <div class="col-md-2">Block</div>
         <div class="col-md-5">
           <select id="new_bblock" class="form-control">
-            <option value="0">Select Block</option>
+            <option value="0">-- Select Block --</option>
           </select>
         </div>
       </div>
@@ -186,15 +187,15 @@
       </div>
       <div class="row justify-content-center mt-4">
         <div class="col-md-2">State</div>
-        <div class="col-md-5"><select id="new_dostate" class="form-control">
-            <option value="0">Select State</option>
+        <div class="col-md-5"><select id="new_dostate" class="form-control" onchange="getDistrict3()">
+            <option value="0">-- Select State --</option>
           </select></div>
       </div>
       <div class="row justify-content-center mt-4">
         <div class="col-md-2">District</div>
         <div class="col-md-5">
-          <select id="new_sdistrict" class="form-control">
-            <option value="0">Select District</option>
+          <select id="new_dodistrict" class="form-control">
+            <option value="0">-- Select District --</option>
           </select>
         </div>
       </div>
@@ -268,6 +269,106 @@
   <script src="js/web3.min.js"></script>
   <script src="js/truffle-contract.js"></script>
   <script src="js/app.js"></script>
+  <script>
+    
+    var jsonData;
+
+    $.getJSON('MasterDatabase.json', function (data) {
+      console.log(data.length);
+      jsonData = data;
+      //console.log(jsonData);
+
+      for(var i = 0; i < jsonData.length; i++) {
+      var x = "<option value='"+jsonData[i].name+"'>"+jsonData[i].name+"</option>";
+      $('#new_sstate').append(x);
+      $('#new_bstate').append(x);
+      $('#new_dostate').append(x);
+      $('#new_sostate').append(x);
+    }
+    });
+
+    var school_state;
+    var block_state;
+
+    function getDistrict1() {
+      var state = $('#new_sstate').val();
+      //console.log(state);
+      var x = "";
+      for(var i = 0; i<jsonData.length; i++) {
+        if(jsonData[i].name == state) {
+          school_state = i;
+          for(var j=0; j<jsonData[i].districtList.length; j++) {
+            x += "<option value='"+jsonData[i].districtList[j].name+"'>"+jsonData[i].districtList[j].name+"</option>";
+            $('#new_sdistrict').html(x);
+          }
+        }
+      }
+
+    }
+
+    function getBlock1() {
+      var district = $('#new_sdistrict').val();
+ 
+      var x = "";
+      for(var i=0; i<jsonData[school_state].districtList.length; i++) {
+        if(jsonData[school_state].districtList[i].name == district) {
+
+          for(var j=0; j<jsonData[school_state].districtList[i].blockList.length; j++) {
+            x += "<option value='"+jsonData[school_state].districtList[i].blockList[j]+"'>"+jsonData[school_state].districtList[i].blockList[j]+"</option>";
+            $('#new_sblock').html(x);
+          }
+        }
+      }
+    }
+
+    function getDistrict2() {
+      var state = $('#new_bstate').val();
+      //console.log(state);
+      var x = "";
+      for(var i = 0; i<jsonData.length; i++) {
+        if(jsonData[i].name == state) {
+          block_state = i;
+          for(var j=0; j<jsonData[i].districtList.length; j++) {
+            x += "<option value='"+jsonData[i].districtList[j].name+"'>"+jsonData[i].districtList[j].name+"</option>";
+            $('#new_bdistrict').html(x);
+          }
+        }
+      }
+    }
+
+    function getBlock2() {
+      var district = $('#new_bdistrict').val();
+ 
+      var x = "";
+      for(var i=0; i<jsonData[block_state].districtList.length; i++) {
+        if(jsonData[block_state].districtList[i].name == district) {
+
+          for(var j=0; j<jsonData[block_state].districtList[i].blockList.length; j++) {
+            x += "<option value='"+jsonData[block_state].districtList[i].blockList[j]+"'>"+jsonData[block_state].districtList[i].blockList[j]+"</option>";
+            $('#new_bblock').html(x);
+          }
+        }
+      }
+    }
+
+    function getDistrict3() {
+      var state = $('#new_dostate').val();
+      //console.log(state);
+      var x = "";
+      for(var i = 0; i<jsonData.length; i++) {
+        if(jsonData[i].name == state) {
+          for(var j=0; j<jsonData[i].districtList.length; j++) {
+            x += "<option value='"+jsonData[i].districtList[j].name+"'>"+jsonData[i].districtList[j].name+"</option>";
+            $('#new_dodistrict').html(x);
+          }
+        }
+      }
+    }
+
+
+
+  </script>
+
 </body>
 
 </html>
