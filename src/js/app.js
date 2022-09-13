@@ -342,7 +342,7 @@ $(function () {
   $('#_registerAs').on("click", function () {
     if ($(this).val() == "1") { $("#addSchool").show(); $('#login').hide(); $('#addBlock').hide(); $('#addDistrict').hide(); $('#addState').hide(); } else {
       if ($(this).val() == "2") { $("#addBlock").show(); $('#login').hide(); $('#addSchool').hide(); $('#addDistrict').hide(); $('#addState').hide(); } else {
-        if ($(this).val() == "3") { $("#addDistrict").show(); $('#login').hide(); $('#addSchool').hide(); $('#addState').hide(); } else {
+        if ($(this).val() == "3") { $("#addDistrict").show(); $('#login').hide(); $('#addSchool').hide(); $('#addState').hide(); $('#addBlock').hide(); } else {
           if ($(this).val() == "4") { $("#addState").show(); $('#login').hide(); $('#addSchool').hide(); $('#addBlock').hide(); $('#addDistrict').hide(); }
         }
       }
