@@ -1,6 +1,4 @@
-<%-- 
-    Document   : reject
---%>
+
 
 <!DOCTYPE html>
 <html>
@@ -17,23 +15,193 @@
 <body>
 
 <div class="sidenav">
-    </br>         
-
-  <a href=""><span class="glyphicon glyphicon-alert"></span>Pending Tender</a>
+    </br>     </br>
+     
+  <a href=""><span class="glyphicon glyphicon-log-in"></span> Login</a>  
+  <a href=""><span class="glyphicon glyphicon-edit"></span> State Officer</a>  
+  <a href="index.html"><span class="glyphicon glyphicon-log-out"></span> Logout</a> 
+  <!-- <a href=""><span class="glyphicon glyphicon-alert"></span>Pending Tender</a>
   <a href=""><span class="glyphicon glyphicon-ok"></span>Processed Tender</a>
   <a href=""><span class="glyphicon glyphicon-road"></span>Fund Transfer</a>
   <a href=""><span class="glyphicon glyphicon-edit"></span>District</a>  
   <a href=""><span class="glyphicon glyphicon-edit"></span>Block</a>  
   <a href=""><span class="glyphicon glyphicon-edit"></span>School</a>  
-  <a href=""><span class="glyphicon glyphicon-log-out"></span>Logout</a>  
+  <a href=""><span class="glyphicon glyphicon-log-out"></span>Logout</a>   -->
 </div>
 <div class="main">
 
     <h1>PM Poshan Project System</h1></br>
-    <p>At state level</p>
+    
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-2">State</div>
+      <div class="col-md-5"><select id="new_sstate" class="form-control" onchange="getDistrict1()">
+          <option value="0">-- Select State --</option>
+        </select></div>
+    </div>
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-2">District</div>
+      <div class="col-md-5">
+        <select id="new_sdistrict" class="form-control" onchange="getBlock1()">
+          <option value="0">-- Select District --</option>
+        </select>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-2">Block</div>
+      <div class="col-md-5">
+        <select id="new_sblock" class="form-control">
+          <option value="0">-- Select Block --</option>
+        </select>
+      </div>
+    </div>
+    <!-- <div class="row justify-content-center mt-4">
+      <div class="col-md-2">District</div>
+      <div class="col-md-2">
+        <select id="new_sdistrict" class="form-control">
+          <option value="0">Select District</option>
+        </select>
+      </div>
+      <div class="col-md-1">Block</div>
+      <div class="col-md-2">
+        <select id="new_sblock" class="form-control">
+          <option value="0">Select Block</option>
+        </select>
+      </div>
+      <div class="col-md-2"><button type="button" class="btn btn-success form-control"
+            onclick="App.btn_search_data()">Search</button></div>
+           
+     <div class="col-md-2"><button type="button" class="btn btn-success form-control"
+              onclick="App.btn_StateView()">view</button></div>
+
+    <div class="col-md-2"></div>
+    </div> -->
+    <section id="_tender"></section>
+        <table class="table table-bordered" padding="1px">
+          <tr><th>Tender Id</th><th>School Id</th><th>Amount</th><th>Month</th><th>Date</th><th>Fund Transfer</th></tr>
+          <tr><td>view_tid</td><td>view_sid</td><td>view_amount</td><td>view_month</td><td>Date</td>
+            <td><button type="button" class="btn btn-success form-control"
+              onclick="App.btn_updateStateFund()">Update</button></td></tr>
+        </table>
+    </section>
+    
 
 </div>
-   
+<script>
+  $('#_fund').hide();
+  $('#_tender').hide();
+  $('#_status').hide();
+  function addFund() {
+    $('#_fund').hide();
+    // $('#_tender').show();
+    $('#_status').hide();
+  };
+  function addSB() {
+    $('#_fund').show();
+    $('#_tender').show();
+    $('#_status').hide();
+  };
+  function tstatus() {
+    $('#_fund').hide();
+    $('#_tender').hide();
+    $('#_status').show();
+  };
+
+  var jsonData;
+
+$.getJSON('MasterDatabase.json', function (data) {
+  console.log(data.length);
+  jsonData = data;
+  //console.log(jsonData);
+
+  for (var i = 0; i < jsonData.length; i++) {
+    var x = "<option value='" + jsonData[i].name + "'>" + jsonData[i].name + "</option>";
+    $('#new_sstate').append(x);
+    $('#new_bstate').append(x);
+    $('#new_dostate').append(x);
+    $('#new_sostate').append(x);
+  }
+});
+
+var school_state;
+var block_state;
+
+function getDistrict1() {
+  var state = $('#new_sstate').val();
+  //console.log(state);
+  var x = "";
+  for (var i = 0; i < jsonData.length; i++) {
+    if (jsonData[i].name == state) {
+      school_state = i;
+      for (var j = 0; j < jsonData[i].districtList.length; j++) {
+        x += "<option value='" + jsonData[i].districtList[j].name + "'>" + jsonData[i].districtList[j].name + "</option>";
+        $('#new_sdistrict').html(x);
+      }
+    }
+  }
+
+}
+
+function getBlock1() {
+  var district = $('#new_sdistrict').val();
+
+  var x = "";
+  for (var i = 0; i < jsonData[school_state].districtList.length; i++) {
+    if (jsonData[school_state].districtList[i].name == district) {
+
+      for (var j = 0; j < jsonData[school_state].districtList[i].blockList.length; j++) {
+        x += "<option value='" + jsonData[school_state].districtList[i].blockList[j] + "'>" + jsonData[school_state].districtList[i].blockList[j] + "</option>";
+        $('#new_sblock').html(x);
+      }
+    }
+  }
+}
+
+function getDistrict2() {
+  var state = $('#new_bstate').val();
+  //console.log(state);
+  var x = "";
+  for (var i = 0; i < jsonData.length; i++) {
+    if (jsonData[i].name == state) {
+      block_state = i;
+      for (var j = 0; j < jsonData[i].districtList.length; j++) {
+        x += "<option value='" + jsonData[i].districtList[j].name + "'>" + jsonData[i].districtList[j].name + "</option>";
+        $('#new_bdistrict').html(x);
+      }
+    }
+  }
+}
+
+function getBlock2() {
+  var district = $('#new_bdistrict').val();
+
+  var x = "";
+  for (var i = 0; i < jsonData[block_state].districtList.length; i++) {
+    if (jsonData[block_state].districtList[i].name == district) {
+
+      for (var j = 0; j < jsonData[block_state].districtList[i].blockList.length; j++) {
+        x += "<option value='" + jsonData[block_state].districtList[i].blockList[j] + "'>" + jsonData[block_state].districtList[i].blockList[j] + "</option>";
+        $('#new_bblock').html(x);
+      }
+    }
+  }
+}
+
+function getDistrict3() {
+  var state = $('#new_dostate').val();
+  //console.log(state);
+  var x = "";
+  for (var i = 0; i < jsonData.length; i++) {
+    if (jsonData[i].name == state) {
+      for (var j = 0; j < jsonData[i].districtList.length; j++) {
+        x += "<option value='" + jsonData[i].districtList[j].name + "'>" + jsonData[i].districtList[j].name + "</option>";
+        $('#new_dodistrict').html(x);
+      }
+    }
+  }
+}
+
+
+</script>
 </body>
 </html> 
 

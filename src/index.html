@@ -174,7 +174,7 @@
       <h4 class=" text-center my-4"><u>Add New District</u></h4>
       <div class="row justify-content-center mt-4">
         <div class="col-md-2">Officer Name</div>
-        <div class="col-md-5"><input type="number" id="new_donm" class="form-control"></div>
+        <div class="col-md-5"><input type="text" id="new_donm" class="form-control"></div>
       </div>
       <div class="row justify-content-center mt-4">
         <div class="col-md-2">Phone</div>
@@ -183,7 +183,7 @@
       </div>
       <div class="row justify-content-center mt-4">
         <div class="col-md-2">School Email</div>
-        <div class="col-md-5"><input type="text" id="new_domail" class="form-control"></div>
+        <div class="col-md-5"><input type="email" id="new_domail" class="form-control"></div>
       </div>
       <div class="row justify-content-center mt-4">
         <div class="col-md-2">State</div>
@@ -203,7 +203,7 @@
         <div class="col-md-3"><button type="button" class="btn btn-success form-control"
             onclick="App.btnAddDistrict()">ADD</button></div>
       </div>
-      <div id="add_err" class="text-center"></div>
+      <div id="add_err3" class="text-center"></div>
       <hr>
     </section>
     <!-- state section -->
@@ -211,7 +211,7 @@
       <h4 class=" text-center my-4"><u>Add New State</u></h4>
       <div class="row justify-content-center mt-4">
         <div class="col-md-2">Officer Name</div>
-        <div class="col-md-5"><input type="number" id="new_sonm" class="form-control"></div>
+        <div class="col-md-5"><input type="text" id="new_sonm" class="form-control"></div>
       </div>
       <div class="row justify-content-center mt-4">
         <div class="col-md-2">Phone</div>
@@ -220,7 +220,7 @@
       </div>
       <div class="row justify-content-center mt-4">
         <div class="col-md-2">School Email</div>
-        <div class="col-md-5"><input type="text" id="new_somail" class="form-control"></div>
+        <div class="col-md-5"><input type="email" id="new_somail" class="form-control"></div>
       </div>
       <div class="row justify-content-center mt-4">
         <div class="col-md-2">State</div>
@@ -232,7 +232,7 @@
         <div class="col-md-3"><button type="button" class="btn btn-success form-control"
             onclick="App.btnAddState()">ADD</button></div>
       </div>
-      <div id="add_err" class="text-center"></div>
+      <div id="add_err4" class="text-center"></div>
       <hr>
     </section>
 
@@ -270,7 +270,36 @@
   <script src="js/truffle-contract.js"></script>
   <script src="js/app.js"></script>
   <script>
-    
+
+    function hideAll() {
+      $("#addSchool").hide();
+      $('#login').hide();
+      $('#addBlock').hide();
+      $('#addDistrict').hide();
+      $('#addState').hide();
+    }
+
+    hideAll();
+
+    $('#_registerAs').on("click", function () {
+      if ($(this).val() == "1") {
+        hideAll();
+        $("#addSchool").show();
+      }
+      else if ($(this).val() == "2") {
+        hideAll();
+        $("#addBlock").show();
+      }
+      else if ($(this).val() == "3") {
+        hideAll();
+        $("#addDistrict").show();
+      }
+      else if ($(this).val() == "4") {
+        hideAll();
+        $("#addState").show();
+      }
+    });
+
     var jsonData;
 
     $.getJSON('MasterDatabase.json', function (data) {
@@ -278,13 +307,13 @@
       jsonData = data;
       //console.log(jsonData);
 
-      for(var i = 0; i < jsonData.length; i++) {
-      var x = "<option value='"+jsonData[i].name+"'>"+jsonData[i].name+"</option>";
-      $('#new_sstate').append(x);
-      $('#new_bstate').append(x);
-      $('#new_dostate').append(x);
-      $('#new_sostate').append(x);
-    }
+      for (var i = 0; i < jsonData.length; i++) {
+        var x = "<option value='" + jsonData[i].name + "'>" + jsonData[i].name + "</option>";
+        $('#new_sstate').append(x);
+        $('#new_bstate').append(x);
+        $('#new_dostate').append(x);
+        $('#new_sostate').append(x);
+      }
     });
 
     var school_state;
@@ -294,11 +323,11 @@
       var state = $('#new_sstate').val();
       //console.log(state);
       var x = "";
-      for(var i = 0; i<jsonData.length; i++) {
-        if(jsonData[i].name == state) {
+      for (var i = 0; i < jsonData.length; i++) {
+        if (jsonData[i].name == state) {
           school_state = i;
-          for(var j=0; j<jsonData[i].districtList.length; j++) {
-            x += "<option value='"+jsonData[i].districtList[j].name+"'>"+jsonData[i].districtList[j].name+"</option>";
+          for (var j = 0; j < jsonData[i].districtList.length; j++) {
+            x += "<option value='" + jsonData[i].districtList[j].name + "'>" + jsonData[i].districtList[j].name + "</option>";
             $('#new_sdistrict').html(x);
           }
         }
@@ -308,13 +337,13 @@
 
     function getBlock1() {
       var district = $('#new_sdistrict').val();
- 
-      var x = "";
-      for(var i=0; i<jsonData[school_state].districtList.length; i++) {
-        if(jsonData[school_state].districtList[i].name == district) {
 
-          for(var j=0; j<jsonData[school_state].districtList[i].blockList.length; j++) {
-            x += "<option value='"+jsonData[school_state].districtList[i].blockList[j]+"'>"+jsonData[school_state].districtList[i].blockList[j]+"</option>";
+      var x = "";
+      for (var i = 0; i < jsonData[school_state].districtList.length; i++) {
+        if (jsonData[school_state].districtList[i].name == district) {
+
+          for (var j = 0; j < jsonData[school_state].districtList[i].blockList.length; j++) {
+            x += "<option value='" + jsonData[school_state].districtList[i].blockList[j] + "'>" + jsonData[school_state].districtList[i].blockList[j] + "</option>";
             $('#new_sblock').html(x);
           }
         }
@@ -325,11 +354,11 @@
       var state = $('#new_bstate').val();
       //console.log(state);
       var x = "";
-      for(var i = 0; i<jsonData.length; i++) {
-        if(jsonData[i].name == state) {
+      for (var i = 0; i < jsonData.length; i++) {
+        if (jsonData[i].name == state) {
           block_state = i;
-          for(var j=0; j<jsonData[i].districtList.length; j++) {
-            x += "<option value='"+jsonData[i].districtList[j].name+"'>"+jsonData[i].districtList[j].name+"</option>";
+          for (var j = 0; j < jsonData[i].districtList.length; j++) {
+            x += "<option value='" + jsonData[i].districtList[j].name + "'>" + jsonData[i].districtList[j].name + "</option>";
             $('#new_bdistrict').html(x);
           }
         }
@@ -338,13 +367,13 @@
 
     function getBlock2() {
       var district = $('#new_bdistrict').val();
- 
-      var x = "";
-      for(var i=0; i<jsonData[block_state].districtList.length; i++) {
-        if(jsonData[block_state].districtList[i].name == district) {
 
-          for(var j=0; j<jsonData[block_state].districtList[i].blockList.length; j++) {
-            x += "<option value='"+jsonData[block_state].districtList[i].blockList[j]+"'>"+jsonData[block_state].districtList[i].blockList[j]+"</option>";
+      var x = "";
+      for (var i = 0; i < jsonData[block_state].districtList.length; i++) {
+        if (jsonData[block_state].districtList[i].name == district) {
+
+          for (var j = 0; j < jsonData[block_state].districtList[i].blockList.length; j++) {
+            x += "<option value='" + jsonData[block_state].districtList[i].blockList[j] + "'>" + jsonData[block_state].districtList[i].blockList[j] + "</option>";
             $('#new_bblock').html(x);
           }
         }
@@ -355,10 +384,10 @@
       var state = $('#new_dostate').val();
       //console.log(state);
       var x = "";
-      for(var i = 0; i<jsonData.length; i++) {
-        if(jsonData[i].name == state) {
-          for(var j=0; j<jsonData[i].districtList.length; j++) {
-            x += "<option value='"+jsonData[i].districtList[j].name+"'>"+jsonData[i].districtList[j].name+"</option>";
+      for (var i = 0; i < jsonData.length; i++) {
+        if (jsonData[i].name == state) {
+          for (var j = 0; j < jsonData[i].districtList.length; j++) {
+            x += "<option value='" + jsonData[i].districtList[j].name + "'>" + jsonData[i].districtList[j].name + "</option>";
             $('#new_dodistrict').html(x);
           }
         }

@@ -32,7 +32,7 @@ body {
   color: darkgrey;
   display: block;
 }
-.sidenav a {
+.sidenav a, .sidenav .sbtn {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 25px;
@@ -113,3 +113,8 @@ div.col-sm-2{
     display: flex;
 }
 h3{display:flow;}
+
+
+.sidenav .sbtn {
+  cursor: pointer;
+}

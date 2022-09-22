@@ -1,38 +1,99 @@
-<%-- 
-    Document   : reject
---%>
-
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="sst.css">
-<style>
-</style>
+  <link rel="stylesheet" href="sst.css">
+  <style>
+  </style>
 </head>
+
 <body>
 
-<div class="sidenav">
-    </br>         
+  <div class="sidenav">
+    </br>
+    <span class="sbtn" onclick="App.select_loginas()"><span class="glyphicon glyphicon-log-in"></span> Login</span>
+    <span class="sbtn" onclick=""><span class="glyphicon glyphicon-edit"></span> Block Officer</span>
+    <span class="sbtn" onclick="f_fund()"><span class="glyphicon glyphicon-road"></span> Fund</span>
+    <span class="sbtn" onclick="f_tender()"><span class="glyphicon glyphicon-road"></span> Tender</span>
+    <span class="sbtn" onclick="index.html"><span class="glyphicon glyphicon-log-out"></span> Logout</span>
 
-  <a href=""><span class="glyphicon glyphicon-alert"></span>Pending Tender</a>
-  <a href=""><span class="glyphicon glyphicon-ok"></span>Processed Tender</a>
-  <a href=""><span class="glyphicon glyphicon-road"></span>Fund Transfer</a>
-  <a href=""><span class="glyphicon glyphicon-edit"></span>School</a>  
-  <a href=""><span class="glyphicon glyphicon-log-out"></span>Logout</a>  
-</div>
-<div class="main">
+  </div>
+  <div class="main">
 
     <h1>PM Poshan Project System</h1></br>
-    <p>At Block Level</p>
+    <button type="button" class="btn btn-success form-control" onclick="App.btn_allSchoolView()">Viw All school</button>
 
-</div>
-   
+    <section id="_tender">
+      <table class="table table-bordered" padding="1px">
+        <thead>
+          <tr>
+            <th>Tender Id</th>
+            <th>School Id</th>
+            <th>Amount</th>
+            <th>Month</th>
+            <th>Date</th>
+            <th>Forward to District</th>
+          </tr>
+
+        </thead>
+        <tbody>
+          <tr>
+            <th>4587</th>
+            <th>564646</th>
+            <th>12100</th>
+            <th>April</th>
+            <th>15-4-2022</th>
+            <th><button type="button" class="btn btn-success form-control" onclick="App.btn_updateBlockTender()">
+                Forward</button></th>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="_fund">
+      <table class="table table-bordered" padding="1px">
+        <thead>
+          <tr>
+            <th>Tender Id</th>
+            <th>School Id</th>
+            <th>Amount</th>
+            <th>Month</th>
+            <th>Fund Transfer </th>
+          </tr>
+        </thead>
+          
+            <tbody id="tenderList">
+
+            </tbody>
+            <!-- <th><button type="button" class="btn btn-success form-control"
+                onclick="App.btn_updateBlockFund()">Transfer</button></th> -->
+          
+        
+      </table>
+    </section>
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/web3.min.js"></script>
+  <script src="js/truffle-contract.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    $('#_fund').hide();
+    $('#_tender').hide();
+    function f_tender() {
+      $('#_fund').hide();
+      $('#_tender').show();
+    };
+    function f_fund() {
+      $('#_fund').show();
+      $('#_tender').hide();
+    };
+  </script>
 </body>
-</html> 
 
-
+</html>

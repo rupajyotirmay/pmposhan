@@ -18,21 +18,55 @@
 
 <div class="sidenav">
     </br>         
-
-  <a href=""><span class="glyphicon glyphicon-alert"></span>Pending Tender</a>
-  <a href=""><span class="glyphicon glyphicon-ok"></span>Processed Tender</a>
-  <a href=""><span class="glyphicon glyphicon-road"></span>Fund Transfer</a>
-  <a href=""><span class="glyphicon glyphicon-edit"></span>Block</a>  
-  <a href=""><span class="glyphicon glyphicon-edit"></span>School</a>  
-  <a href=""><span class="glyphicon glyphicon-log-out"></span>Logout</a>  
+    <span class="sbtn" onclick="App.select_loginas()"><span class="glyphicon glyphicon-log-in"></span>  Login</span>
+    <span class="sbtn" onclick=""><span class="glyphicon glyphicon-edit"></span> District Officer</span>
+    <span class="sbtn" onclick="f_fund()"><span class="glyphicon glyphicon-road"></span> Fund</span>
+    <span class="sbtn" onclick="f_tender()"><span class="glyphicon glyphicon-road"></span> Tender</span>
+    <span class="sbtn" onclick="index.html"><span class="glyphicon glyphicon-log-out"></span> Logout</span>
 </div>
 <div class="main">
 
     <h1>PM Poshan Project System</h1></br>
-    <p>At District Level</p>
-
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-2">Block</div>
+      <div class="col-md-3">
+        <select id="new_sblock" class="form-control">
+          <option value="0">Select Block</option>
+        </select>
+      </div>
+      <div class="col-md-3"><button type="button" class="btn btn-success form-control"
+            onclick="App.btn_search_data()">Search</button></div>
+    </div>
+    <section id="_tender">
+        <table class="table table-bordered" padding="1px" >
+          <tr><th>Tender Id</th><th>School Id</th><th>Amount</th><th>Month</th><th>Date</th><th>Forward to State</th></tr>
+          <tr><th>4587</th><th>564646</th><th>12100</th><th>April</th><th>15-4-2022</th>
+            <th><button type="button" class="btn btn-success form-control"onclick="App.btn_updateDistrictTender()">
+              Forward</button></th></tr>
+        </table>
+    </section>
+    <section id="_fund">
+        <table class="table table-bordered" padding="1px">
+          <tr><th>Tender Id</th><th>School Id</th><th>Amount</th><th>Month</th><th>Fund Transfer</th></tr>
+          <tr><th>4587</th><th>564646</th><th>12100</th><th>April</th>
+            <th><button type="button" class="btn btn-success form-control"onclick="App.btn_updateDistrictFund()">
+              Forward</button></th></tr>
+        </table>
+    </section>
 </div>
-   
+      
+<script>
+  $('#_fund').hide();
+  $('#_tender').hide();
+  function f_tender() {
+    $('#_fund').hide();
+    $('#_tender').show();
+  };
+  function f_fund() {
+    $('#_fund').show();
+    $('#_tender').hide();
+  };
+  </script>
 </body>
 </html> 
 
