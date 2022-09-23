@@ -1,6 +1,8 @@
 App = {
   web3Provider: null,
   account: null,
+  getbnm: null,
+  tsize:0,
   contracts: {},
   init: async function () {
     return await App.initWeb3();
@@ -211,7 +213,7 @@ App = {
     var tid = $('#new_tid').val();
     var tmonth = $('#new_tMonth').val();
     var tstno = $('#new_tNoOfStudent').val();
-    var tamount = $('#new_tAmount').val();
+    var tamount = $('#new_tAmount').val();alert('ok');
     if (tid == "" || tmonth == "" || tstno == "" || tamount == "") {
       $('#add_err').text('* Kindly fill all the fields !');
     }
@@ -220,8 +222,8 @@ App = {
       App.contracts.userRegister.deployed().then(function (instance) {
         return instance.checkschool(App.account);
       }).then(function (result) {
-        if (result == 1) {
-          $('#add_err4').text('* school is already exists !');
+        if (result == 0) {
+          $('#add_err4').text('* school does not exists !');
         }
         else {
           // Calling addSchol function to add the student details
@@ -363,19 +365,18 @@ App = {
         App.contracts.userRegister.deployed().then(function (instance) {
           return (instance.showblock(App.account), instance.showschool(App.account));
         }
-        ).then(function (resultblock, result) {
+        ).then(function (result) {
 
           //window.location.href ="s_page.html";
-          console.log(resultblock);
-          // Displaying the values
-          if (resultblock[5] == result[6]) {
+          console.log(result);
+          // Displaying the values {
             $('#view_acad').text(App.account);
             $('#view_sid').text(result[0].toNumber());
             $('#view_sname').text(result[1]);
             $('#view_sblock').text(result[6]);
             $('#view_result').show();
             //window.location.href ="s_page.html";
-          }
+          
         }).catch(function (err) {
           console.log(err.message);
         })
@@ -383,24 +384,21 @@ App = {
     }
   },
 
-  btn_allSchoolView: function () {
-    
+  btn_allSchoolView: function () { 
 
-    
-    for (var i = 0; i < 1; i++) {
+    App.getBlockNm();
+    App.gettenderSize();    
+    for (var i = 0; i < tsize; i++) {
       App.showtenderview(i);
     }
     $('#btn_allSchoolView').hide();
-
-    //console.log(App.policyList);
-
   },
   showtenderview:function(times){
     App.contracts.userRegister.deployed().then(function (instance) {
       return instance.showtender(times);
     }).then(function (result) {
 
-      var getsid=App.showSchoolView(times);
+      var getsid=App.showSchoolView(10);
       //console.log(result);
       if(getsid==result[2]){
       var x = "<tr><td>" + result[0].toNumber() + "</td><td>" + result[1].toNumber() + "</td><td>" + result[2] + "</td><td>" + result[3].toNumber() + "</td><td>" + result[4]+ "</td><td><button class='btn btn-sm btn-primary' type='button' onclick='App.btnUserApplyIns(" + result[0].toNumber() + ")'>APPLY</button></td></tr>";
@@ -415,7 +413,6 @@ App = {
     App.contracts.userRegister.deployed().then(function (instance) {
       return instance.showschoolindex(times);
     }).then(function (result) {
-      var getbnm=App.getBlockNm();
       console.log(getbnm);
       if(getbnm==result[6]){
       return (result[8]);
@@ -429,11 +426,22 @@ App = {
       return instance.showblock(App.account);
     }).then(function (result) {
       console.log(result);
-      return(result[5]);
+      return(getbnm=result[5]);
     }).catch(function (err) {
       console.log(err.message);
     })
   },
+  gettenderSize: function () {
+    App.contracts.UserRegister.deployed().then(function (instance) {
+      return instance.getTenderSize(1);
+    }).then(function (result) {
+      return(tsize= result.toNumber());
+      console.log('Policy Nums: ' + tsize);
+    }).catch(function (err) {
+      console.log(err.message);
+    });
+  },
+
 };
 
 
